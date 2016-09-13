@@ -1,14 +1,14 @@
 <template>
-    <div class="land" :style="{width:this.style.width+'px',left:this.style.left+'px'}">
+    <div class="land"
+         :style="{width:this.style.width+'px',left:this.style.left+'px',height:this.style.height+'px'}">
     </div>
 </template>
 <style scoped>
     .land {
         position: absolute;
         bottom: 0;
-        height: 15%;
         background: url("../assets/img/land.png") repeat-x;
-        background-size: contain;
+        z-index: 10;
     }
 </style>
 <script>
@@ -19,7 +19,8 @@
         data(){
             return {
                 style: {
-                    width: Config.app.width + Config.land.unitWidth,
+                    width: Config.app.width + Config.land.unitWidth*2,
+                    height: Config.land.height,
                     left: 0
                 }
             }

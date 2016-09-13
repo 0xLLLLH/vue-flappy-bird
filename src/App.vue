@@ -1,26 +1,48 @@
 <template>
     <div id="app" :style="{width:width+'px',height:height+'px'}">
         <land></land>
+        <pipe-group></pipe-group>
     </div>
 </template>
 
 <script>
     import Config from './config.js'
-    import Land from './components/land.vue'
     import Game from './game.js'
+    import Land from './components/land.vue'
+    import PipeGroup from './components/pipegroup.vue'
 
     export default {
         data () {
             return {
                 width: Config.app.width,
-                height: Config.app.height
+                height: Config.app.height,
+                pipes:[]
             }
         },
         components:{
-            Land
+            Land,
+            PipeGroup
         },
         methods: {
-
+            move: function () {
+                this.pipes.map(function (pos) {
+                    pos -= Config.pipe.speed;
+                    if (pos < Config.pipe.width)
+                        pos += Config.pipe.width;
+                    return pos;
+                });
+            }
+        },
+        created () {
+            // add pipes
+            for (let i = 0; i< Config.pipe.pipeCount;i++)
+                this.pipes.push( i * (Config.pipe.width + Config.pipe.distance));
+            // add event listener
+            Game.events.addListener('timer', this.move);
+        },
+        destroyed: function () {
+            console.log('Pipes:Destroyed');
+            Game.events.removeListener('timer', this.move);
         }
     }
 </script>

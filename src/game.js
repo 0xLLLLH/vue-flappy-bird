@@ -17,15 +17,13 @@ let game = {
     timer: {
         id: 0,
         start () {
-            this.id = setInterval(this.func, Config.app.refreshInterval);
             console.log('game.js:timer start');
+            this.id = setInterval(() => {
+                game.events.emit('timer');
+            }, Config.app.refreshInterval);
         },
         stop () {
             clearInterval(this.id);
-        },
-        func () {
-            game.events.emit('timer');
-            console.log('timer');
         }
     },
     init () {
@@ -35,6 +33,13 @@ let game = {
         // TODO: game start
         this.init();
         this.timer.start();
+    },
+    setState (state) {
+        if (this.stateList[state]) {
+            // TODO: trigger hooks before state change
+            this.stateNow = state;
+            // TODO: trigger hooks after state change
+        }
     }
 };
 
