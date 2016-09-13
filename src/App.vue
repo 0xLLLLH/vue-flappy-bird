@@ -1,13 +1,17 @@
 <template>
     <div id="app" :style="{width:width+'px',height:height+'px'}">
         <land></land>
+        <pipe-group></pipe-group>
+        <bird></bird>
     </div>
 </template>
 
 <script>
     import Config from './config.js'
-    import Land from './components/land.vue'
     import Game from './game.js'
+    import Land from './components/land.vue'
+    import PipeGroup from './components/pipegroup.vue'
+    import Bird from './components/bird.vue'
 
     export default {
         data () {
@@ -17,10 +21,11 @@
             }
         },
         components:{
-            Land
+            Land,
+            PipeGroup,
+            Bird
         },
         methods: {
-
         }
     }
 </script>
