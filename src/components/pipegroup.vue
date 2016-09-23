@@ -23,6 +23,7 @@
             return{
                 pipes:[],       // {position, topPipeHeight}
                 isPassing: false
+
             }
         },
         components:{

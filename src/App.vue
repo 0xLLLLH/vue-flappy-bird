@@ -17,7 +17,8 @@
         data () {
             return {
                 width: Config.app.width,
-                height: Config.app.height
+                height: Config.app.height,
+                pipes:[]
             }
         },
         components:{
@@ -26,6 +27,7 @@
             Bird
         },
         methods: {
+
         }
     }
 </script>
