@@ -2,6 +2,21 @@ import Events from 'events';
 import Config from './config.js';
 
 let game = {
+    score: {
+        score: 0,
+        record: 0,
+        addScore: function () {
+            this.score++;
+            if (this.score > this.record) {
+                this.record = this.score;
+            }
+            game.events.emit('scoreUpdate');
+        },
+        clearScore: function () {
+            this.score = 0;
+            game.events.emit('scoreUpdate');
+        }
+    },
     events: new Events.EventEmitter(),
     limits: {
         maxHeight: Config.app.height,
@@ -35,21 +50,28 @@ let game = {
             this.isRunning = false;
         }
     },
+    spaceOrTouch () {
+        switch (game.stateNow) {
+            case game.stateList.ready:
+                game.setState(game.stateList.running);
+                break;
+            case game.stateList.running:
+                game.events.emit('space');
+                break;
+            case game.stateList.stop:
+                game.setState(game.stateList.reset);
+                game.setState(game.stateList.ready);
+                break;
+            default:
+                break;
+        }
+    },
     init () {
+        this.score.clearScore();
+        document.addEventListener('touchstart',this.spaceOrTouch, false);
         document.onkeydown = (e) => {
             if (e.keyCode === 32) {
-                switch (this.stateNow) {
-                    case this.stateList.ready:
-                        this.setState(this.stateList.running);
-                        break;
-                    case this.stateList.running:
-                        this.events.emit('space');
-                        break;
-                    case this.stateList.stop:
-                        this.setState(this.stateList.reset);
-                        this.setState(this.stateList.ready);
-                        break;
-                }
+                this.spaceOrTouch();
             }
             if (e.keyCode === 27) {
                 // this.events.emit('esc');
@@ -62,12 +84,12 @@ let game = {
         };
         this.setState(this.stateList.reset);
         this.setState(this.stateList.ready);
+        if (!this.timer.isRunning) {
+            this.timer.start();
+        }
     },
     start () {
-        // TODO: game start
-        this.init();
-        this.timer.start();
-        this.setState('running');
+        this.setState(this.stateList.running);
     },
     setState (state) {
         if (this.stateList[state] && this.stateNow !== state) {

@@ -28,7 +28,7 @@ let birdSettings = {
     width: 48,
     height: 48,
     imgPadding: 5,
-    left: 200,
+    left: 100,
     bottom: 300,
     gravity: -5,
     flyVector: 15

@@ -3,6 +3,7 @@
         <land></land>
         <pipe-group></pipe-group>
         <bird></bird>
+        <panel></panel>
     </div>
 </template>
 
@@ -12,6 +13,7 @@
     import Land from './components/land.vue'
     import PipeGroup from './components/pipegroup.vue'
     import Bird from './components/bird.vue'
+    import Panel from './components/panel.vue'
 
     export default {
         data () {
@@ -24,7 +26,8 @@
         components:{
             Land,
             PipeGroup,
-            Bird
+            Bird,
+            Panel
         },
         methods: {
 

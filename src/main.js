@@ -12,6 +12,6 @@ let vm = new Vue({
     el: '#app',
     render: (h) => (h(App)),
     created: function () {
-        Game.start();
+        Game.init();
     }
 });

@@ -101,7 +101,7 @@
                 if (state == Game.stateList.reset) {
                     this.reset();
                 }
-                console.log('Bird: state change to ' + state);
+                // console.log('Bird: state change to ' + state);
             },
 
             running () {
@@ -128,6 +128,9 @@
                     this.heightNow = Config.land.height;
                 } else {
                     Game.setState(Game.stateList.stop);
+                    setTimeout(function () {
+                        Game.init();
+                    },500);
                 }
             }
         },

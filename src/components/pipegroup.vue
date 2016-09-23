@@ -75,6 +75,9 @@
                         this.changeLimit(this.pipes[passPos].topPipeHeight);
                     }
                 } else {
+                    if (this.isPassing) {
+                        Game.score.addScore();
+                    }
                     this.isPassing = false;
                     this.changeLimit();
                 }
@@ -83,7 +86,7 @@
                 if (state == Game.stateList.reset) {
                     this.reset();
                 }
-                console.log('PipeGroup: state change to ' + state);
+                // console.log('PipeGroup: state change to ' + state);
             },
             reset () {
                 // add pipes
