@@ -26,19 +26,26 @@
             }
         },
         methods: {
-            move() {
+            update() {
+                if (this.hasOwnProperty(Game.stateNow))
+                    this[Game.stateNow]();      // call update function according to current state
+            },
+            running () {
                 this.style.left-=Config.land.speed;
                 if (this.style.left <= - Config.land.unitWidth)
                     this.style.left += Config.land.unitWidth;
+            },
+            over () {
+
             }
         },
         created: function () {
             console.log('Land:Created');
-            Game.events.addListener('timer', this.move);
+            Game.events.addListener('timer', this.update);
         },
         destroyed: function () {
             console.log('Land:Destroyed');
-            Game.events.removeListener('timer', this.move);
+            Game.events.removeListener('timer', this.update);
         }
     }
 

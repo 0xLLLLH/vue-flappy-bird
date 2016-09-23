@@ -1,7 +1,7 @@
 let appSettings = {
     width: 600,
     height: 800,
-    speed: 2,
+    speed: 4,
     refreshInterval: 20
 };
 
@@ -16,7 +16,7 @@ landSettings.unitWidth = (landSettings.srcWidth / landSettings.unitCount);
 
 let pipeSettings = {
     pipeCount: 3,
-    width: 75,
+    width: 100,
     distance: 200,
     spaceHeight: 200,
     topPipeHeightMax: 400,
@@ -25,8 +25,13 @@ let pipeSettings = {
 };
 
 let birdSettings = {
+    width: 48,
+    height: 48,
+    imgPadding: 5,
     left: 200,
-    top: 300
+    bottom: 300,
+    gravity: -5,
+    flyVector: 15
 };
 
 export default {

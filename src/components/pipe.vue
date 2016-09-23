@@ -1,8 +1,8 @@
 <template>
     <div class="pipe" :style="{width:width+'px',left:position+'px'}">
-        <div class="pipe-top" :style="{height:topHeight+'px'}"></div>
+        <div class="pipe-top" :style="{height:topPipeHeight+'px'}"></div>
         <div class="space" :style="{height:spaceHeight+'px'}"></div>
-        <div class="pipe-bottom":style="{height:bottomHeight+'px'}"></div>
+        <div class="pipe-bottom":style="{height:bottomPipeHeight+'px'}"></div>
     </div>
 </template>
 <style>
@@ -34,16 +34,19 @@
             }
         },
         computed: {
-            topHeight: function () {
-                return Config.pipe.topPipeHeightMin
-                    + Math.random()*(Config.pipe.topPipeHeightMax-Config.pipe.topPipeHeightMin);
-            },
-            bottomHeight: function () {
-                return Config.app.height - Config.land.height - this.topHeight - this.spaceHeight;
+            bottomPipeHeight: function () {
+                return Config.app.height - Config.land.height - this.topPipeHeight - this.spaceHeight;
             }
         },
         props:{
-            position: Number
+            position: Number,
+            topPipeHeight:Number
+        },
+        methods:{
+        },
+        created () {
+        },
+        destroyed () {
         }
     }
 
