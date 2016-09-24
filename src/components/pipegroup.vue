@@ -70,7 +70,7 @@
                 }
                 if (passPos != -1) {
                     if (!this.isPassing) {
-                        console.log("Passing Pipe: " + this.pipes.toString());
+                        // console.log("Passing Pipe: " + this.pipes.toString());
                         this.isPassing = true;
                         this.changeLimit(this.pipes[passPos].topPipeHeight);
                     }

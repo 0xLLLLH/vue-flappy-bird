@@ -4,6 +4,7 @@
         <pipe-group></pipe-group>
         <bird></bird>
         <panel></panel>
+        <music></music>
     </div>
 </template>
 
@@ -14,6 +15,7 @@
     import PipeGroup from './components/pipegroup.vue'
     import Bird from './components/bird.vue'
     import Panel from './components/panel.vue'
+    import Music from './components/music.vue'
 
     export default {
         data () {
@@ -27,7 +29,8 @@
             Land,
             PipeGroup,
             Bird,
-            Panel
+            Panel,
+            Music
         },
         methods: {
 
